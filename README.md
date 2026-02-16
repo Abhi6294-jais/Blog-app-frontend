@@ -1,36 +1,62 @@
-# 🌐 Client - Modern Blog App Frontend
+# 🌐 Modern Blog App Frontend
 
-Sample User Interface for the Modern Blog App, built using React, Vite, and TailwindCSS. This frontend interacts seamlessly with the backend API to provide a smooth user experience.
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://blog-app-frontend-liart-omega.vercel.app/)
+[![Backend Repo](https://img.shields.io/badge/Backend-Repository-blue?style=for-the-badge)](https://github.com/Abhi6294-jais/Blog-app-backend)
+
+A stunning, responsive, and feature-rich frontend for a modern blogging platform. Built with **React**, **Vite**, and **Tailwind CSS**, this application provides a seamless user experience for reading, writing, and managing blogs.
+
+It is fully integrated with a robust backend (Dockerized & deployed) and leverages AI for content generation.
+
+---
+
+## 🚀 Live Demo
+
+- **Frontend (UI):** [https://blog-app-frontend-liart-omega.vercel.app/](https://blog-app-frontend-liart-omega.vercel.app/)
+- **Backend API:** [https://blog-app-frontend-ap4s.vercel.app/](https://blog-app-frontend-ap4s.vercel.app/)
+
+---
 
 ## ✨ Features
 
-- **Responsive Design**: Crafted with [Tailwind CSS](https://tailwindcss.com/) for a sleek, modern look on all devices.
-- **Rich Text Editor**: Integrated with [Quill](https://quilljs.com/) for writing and formatting blog posts effortlessly.
-- **Authentication**: Secure login and registration using JWT, plus **Google OAuth** integration via `@react-oauth/google`.
-- **Admin Dashboard**: dedicated tools for administrators to manage blogs, comments, and view platform statistics.
-  - **Blog Management**: Create, edit, delete, and publish blogs.
-  - **Comment Moderation**: Review and approve user comments.
-- **Dynamic Content**:
-  - Blog listing with infinite scroll or pagination (implementation dependent).
-  - Detailed blog view with rendered HTML content.
-  - Interactive comment section.
-- **Notifications**: Real-time feedback using [react-hot-toast](https://react-hot-toast.com/).
-- **Animations**: Smooth transitions powered by [Motion](https://motion.dev/).
+- **🎨 Modern & Responsive Design**: Crafted with [Tailwind CSS](https://tailwindcss.com/) for a sleek look across all devices (Mobile, Tablet, Desktop).
+- **✍️ Rich Text Editor**: Integrated [Quill](https://quilljs.com/) editor for effortless blog writing and formatting.
+- **🔐 Secure Authentication**:
+  - Google OAuth integration for one-click login.
+  - Email/Password authentication using JWT.
+- **🤖 AI-Powered Writing**: Generate blog content automatically using **Google Gemini AI** directly from the editor.
+- **🛡️ Admin Dashboard**:
+  - Manage all blogs (Edit, Delete, Publish/Unpublish).
+  - Comment moderation system (Approve/Delete user comments).
+  - view platform statistics.
+- **💬 Interactive Comments**: Engage with users through a comment system.
+- **⚡ High Performance**: Optimized build with Vite and smooth animations using [Motion](https://motion.dev/).
+
+---
 
 ## 🛠️ Tech Stack
 
 - **Framework**: [React](https://react.dev/) (v19)
 - **Build Tool**: [Vite](https://vitejs.dev/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) (v4)
+- **State Management**: React Context API
 - **Routing**: [React Router](https://reactrouter.com/) (v6)
-- **State Management**: Context API
 - **HTTP Client**: [Axios](https://axios-http.com/)
-- **Utilities**:
-  - `marked`: Markdown parsing
-  - `moment`: Date formatting
-  - `quill`: Rich text editing
+- **Utilities**: `marked` (Markdown), `moment` (Dates), `react-hot-toast` (Notifications)
 
-## 🚀 Getting Started
+---
+
+## 🔗 Backend Integration
+
+This frontend is designed to work with the **Modern Blog App Backend**.
+
+- **Repository**: [github.com/Abhi6294-jais/Blog-app-backend](https://github.com/Abhi6294-jais/Blog-app-backend)
+- **Features**: Dockerized, AWS Ready, Gemini AI, ImageKit Storage, MongoDB.
+
+---
+
+## 🚀 Getting Started Locally
+
+Follow these steps to set up the project locally.
 
 ### Prerequisites
 
@@ -50,43 +76,27 @@ cd blog-app-frontend/client
 npm install
 ```
 
-### 3. Environment Variables
+### 3. Environment Configuration
 
-Create a `.env` file in the `client` directory and add the following configuration:
+Create a `.env` file in the `client` root directory. You can point `VITE_BASE_URL` to the live backend or your local backend server.
 
 ```env
-# Backend API URL
-VITE_BASE_URL=http://localhost:3000
+# Point to the live backend or http://localhost:3000 for local dev
+VITE_BASE_URL="https://blog-app-frontend-ap4s.vercel.app"
 
-# Google OAuth Client ID
-VITE_GOOGLE_CLIENT_ID=your_google_client_id
+# Google OAuth Client ID (Required for Login)
+VITE_GOOGLE_CLIENT_ID="your_google_client_id"
 ```
 
-> **Note:** Ensure `VITE_BASE_URL` points to your running backend server.
-
-### 4. Run Locally
-
-Start the development server:
+### 4. Run Development Server
 
 ```bash
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`.
+The app will be available at `http://localhost:5173`.
 
-### 5. Build for Production
-
-To create a production-ready build:
-
-```bash
-npm run build
-```
-
-To preview the production build locally:
-
-```bash
-npm run preview
-```
+---
 
 ## 📂 Project Structure
 
@@ -94,33 +104,19 @@ npm run preview
 client/
 ├── public/              # Static assets
 ├── src/
-│   ├── assets/          # Images, fonts, etc.
-│   ├── components/      # Reusable UI components
-│   │   ├── admin/       # Admin-specific components
-│   │   └── ...
-│   ├── context/         # React Context (State Management)
-│   ├── pages/           # Application pages (Home, Blog, Admin Dashboard)
-│   │   ├── admin/       # Admin pages
-│   │   └── ...
-│   ├── App.jsx          # Main application component & Routing
-│   ├── main.jsx         # Entry point
-│   └── index.css        # Global styles & Tailwind imports
-├── .env                 # Environment variables
-├── index.html           # HTML template
-├── package.json         # Dependencies and scripts
-├── vite.config.js       # Vite configuration
-└── README.md            # Project documentation
+│   ├── assets/          # Images, fonts
+│   ├── components/      # Reusable UI (Navbar, Footer, BlogCards)
+│   ├── context/         # App State (Auth, Blog Data)
+│   ├── pages/           # Pages (Home, BlogDetails, Admin Dashboard)
+│   ├── App.jsx          # Routing Setup
+│   └── main.jsx         # Entry Point
+├── .env                 # Env variables
+└── vite.config.js       # Vite Config
 ```
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Contributions are welcome! Please fork the repo, create a feature branch, and submit a Pull Request.
 
 ## 📄 License
 
