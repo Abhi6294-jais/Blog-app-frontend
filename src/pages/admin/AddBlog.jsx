@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { parse } from "marked";
 
 const AddBlog = () => {
-  const { axios } = useAppContext();
+  const { axios, fetchBlogs } = useAppContext();
 
   const [isAdding, setIsAdding] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -47,8 +47,7 @@ const AddBlog = () => {
       e.preventDefault();
 
       if (!image) {
-        toast.error("Please select a thumbnail image");
-        return;
+        return toast.error("Please upload a thumbnail image");
       }
 
       setIsAdding(true);
@@ -72,6 +71,7 @@ const AddBlog = () => {
         setTitle(""); // Assuming setTitle is a state setter
         quillRef.current.root.innerHTML = ""; // Clears Quill editor content
         setCategory("Startup"); // Assuming setCategory is a state setter
+        fetchBlogs(); // trigger immediate refresh
       } else {
         toast.error(data.message);
       }
